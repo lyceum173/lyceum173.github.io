@@ -6,8 +6,8 @@ import router from './router'
 
 const app = createApp(App)
 
-const v = "0.3.0";
-console.log(`%cApp Version: ${v}`, 'background: red; color: white; padding: 4px; border-radius: 4px;');
+const v = "0.3.2";
+console.log(`%cApp Version: ${v}`, 'background: #2dbdaa; color: white; padding: 4px; border-radius: 4px;');
 
 fetch('https://freeipapi.com/api/json/')
 .then(res => res.json())

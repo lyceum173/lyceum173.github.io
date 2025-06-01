@@ -42,6 +42,26 @@
                 </div>
                 <p>Мета - розбавити</p>
             </section>
+            <br>
+            <section>
+                <div class="hr">
+                    <span>НОВИНИ</span>
+                </div>
+                <div class="news">
+                    <div v-for="n in posts" :key="n.id" class="news-item">
+                            <h3>{{ n.title }}</h3>
+                            <p>{{ n.description }}</p>
+                            <p class="news-item__date">{{ n.date }}</p>
+                            <button class="news-item__button"><a :href="`/posts/${n.id}`">Перейти
+                            </a></button>
+                        <div class="news-item__button-after"></div>
+                        <div class="news-item__corner"></div>
+                        <div class="news-item__corner"></div>
+                            
+                    </div>
+
+                </div>
+            </section>
             <!-- <section>
                 <div class="hr">
                     <span>єБали</span>
@@ -299,23 +319,116 @@ section .hr span {
     background-color: var(--bg-body);
     padding-right: 0.5rem;
 }
+.news {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+}
+.news-item {
+    background-color: white;
+    border-radius: 1rem;
+    padding: 1rem;
+    /* box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); */
+}
 
+.news-item__date {
+    width:100%;
+    color: grey;
+}
+
+
+
+.news-item{
+    padding: 1rem;
+    width: 100%;
+    border-radius: 1rem;
+    position: relative;
+}
+
+.news-item_button {
+    width: 5rem;
+    height: 2rem;
+}
+.news-item__button-after {
+    position: absolute;
+    width:5.5rem;
+    height: 2.5rem;
+    background-color: var(--bg-body);
+    border-radius: 1.5rem 0 1rem 0 ;
+    bottom: 0;
+    right: 0;
+    content: " ";
+    z-index: 5;
+}
+
+.news-item__corner {
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--bg-body);
+    bottom: 0;
+    right: 5.5rem;
+}
+.news-item__corner:last-of-type {
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--bg-body);
+    bottom: 2.5rem;
+    right: 0rem;
+}
+.news-item__corner:last-of-type::after {
+    position: absolute;
+    content: " ";
+    width: 2rem;
+    height: 2rem;
+    background: white;
+    bottom: 0;
+    z-index: 1000;
+    right: 0;
+    border-radius: 0 0 1rem 0;
+}
+.news-item__corner::after {
+    position: absolute;
+    content: " ";
+    width: 2rem;
+    height: 2rem;
+    background: white;
+    bottom: 0;
+    z-index: 1000;
+    right: 0;
+    border-radius: 0 0 1rem 0;
+}
+.news-item__button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0.5rem;
+    background-color: var(--accent);
+    color: white;
+    border-radius: 1rem;
+    z-index: 60 !important;
+
+}
 </style>
 <script setup>
 import FooterComponent from '@/components/FooterComponent.vue';
 import CMS from '@/lib/cms';
+import {ref} from "vue"
 
-fetch("/cms.json")
+const posts = ref([])
+fetch("/api/cms/posts")
   .then(res => {
     if (!res.ok) throw new Error("Failed to load CMS settings");
-    console.log(res.json())
-    // return res.json();
+    return res.json(); // Return the Promise here
   })
-//   .then(data => {
-//     console.log("CMS settings:", data);
-//   })
-//   .catch(err => {
-//     console.error("Error loading CMS config:", err);
-//   });
+  .then(data => {
+    console.log("CMS posts:", data); // Now log the parsed JSON
+    posts.value = data
+
+  })
+  .catch(err => {
+    console.error("Error loading CMS posts:", err);
+  });
 
 </script>

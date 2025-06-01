@@ -121,3 +121,19 @@ header button {
 footer span:nth-of-type(2) {
   color: var(--accent)
 }
+.wrapper {
+  position: relative;
+  top: 0px;
+}
+
+.breadcrumbs {
+  margin-bottom: 1rem;
+}
+.breadcrumbs a svg{
+  transform: translateY(2px);
+}
+.breadcrumbs a{
+  height: min-content;
+  display: flex;
+  align-items: center;
+}

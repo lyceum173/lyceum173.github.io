@@ -1,5 +1,5 @@
 <template>
-   <HeaderComponent></HeaderComponent>
+<HeaderComponent></HeaderComponent>
     <main class="main">
         <!-- <div class="main-after">
             <h1>Lyceum 173</h1>
@@ -8,35 +8,18 @@
             <div class="hero">
                 <div class="hero__text">
                     <div class="hero__text__item">
-                        ІНТЕРАКТИВНА
+                        НОВИНИ
                     </div>
-                    <div class="hero__text__item">
-                        <mark>WEB</mark> ПЛАТФОРМА
-                    </div>
-                    <div class="hero__text__item">
-                        <strong>ЛІЦЕЮ 173 </strong>
-                    </div>
-                </div>
-                <div class="hero__card">
-                    Інтерактивна освітня платформа для учнів, вчителів та батьків. <br><br>
-                    Навчайся зручно, ефективно та цікаво.
                 </div>
             </div>
-            <br><br>
-            <br>
+
             <section>
                 <div class="hr">
-                    <span>ПРО ПЛАТФОРМУ</span>
-                </div>
-                <p>Мета - розбавити</p>
-            </section>
-            <br>
-            <section>
-                <div class="hr">
-                    <span>НОВИНИ</span>
+                    <span>ОСТАННІ НОВИНИ</span>
                 </div>
                 <div class="news">
-                    <div v-for="n in posts.slice(0, 8)" :key="n.id" class="news-item">
+                    <div v-for="n in paginatedPosts" :key="n.id" class="news-item">
+
                         <div class="news-item__content">
                           
                             <div class="news-item__title">  <h3>{{ n.title }}</h3></div>
@@ -51,30 +34,40 @@
                     </div>
 
                 </div>
-                <div class="more">
-                    <a href="news/">Більше</a>
+                <div class="pagination__container">
+                    <div class="pagination">
+<button @click="goToPage(currentPage - 1)" :disabled="currentPage === 1" style="padding: 0px; "><svg style="rotate: 180deg; transform: translateY(-5px);" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="injected-svg" data-src="https://cdn.hugeicons.com/icons/arrow-right-01-stroke-standard.svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" color="#000000">
+<path d="M9.00005 6L15 12L9 18" stroke="#000000" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg></button>
+  <button
+    v-for="page in totalPages"
+    :key="page"
+    @click="goToPage(page)"
+    :class="{ current: page === currentPage }"
+  >
+    {{ page }}
+  </button>
+  
+  <button @click="goToPage(currentPage + 1)" :disabled="currentPage === totalPages" style="padding: 0px; "><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="injected-svg" data-src="https://cdn.hugeicons.com/icons/arrow-right-01-stroke-standard.svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" color="#000000">
+<path d="M9.00005 6L15 12L9 18" stroke="#000000" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg></button>
+</div>
                 </div>
-            </section>
-            <!-- <section>
-                <div class="hr">
-                    <span>єБали</span>
-                </div>
-            </section> -->
-            <!-- <div class="item">
-    <h2><strong>Lyceum173</strong><br></h2>
-    <p style="width: 100%; text-align: center; color: var(--accent)">Найкоротший шлях до знань</p>
-    <br><br>
-    <p>Сервіс для створення коротких посилань.</p>
-    <p>Швидко ділись важливими ресурсами, організовуй навчальні матеріали та отримуй доступ до інформації за секунди.</p>
 
-</div> -->
 
+         </section>
         </div>
     </main>
     <FooterComponent></FooterComponent>
    
 </template>
 <style scoped>
+.main {
+    margin-top: calc(1rem + 48px);
+}
+.hero {
+    margin-bottom: 1rem;
+}
 button {
     cursor: pointer;
 }
@@ -109,40 +102,6 @@ h1 {
     justify-content: center;
     align-items: center;
 } */
-
-.more {
-    width: 100%;
-    text-align: center ;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-}
-.more a {
-    --a: transparent !important;
-    transition: all 0.3s ease;
-}
-
-.more a::before {
-    position: absolute;
-    bottom: -0.125rem;;
-    left: 50%;
-    transform: translateX(-50%);
-    content: "";
-    width: 2rem !important;
-    background-color: var(--primary) !important;
-    height: 2px !important;
-    transition: all 0.3s ease;
-    z-index: -1;
-}
-.more a:hover {
-    color: white;
-}
-.more a:hover::before {
-    height: calc(100% + 0.25rem) !important;
-    width: calc(100% + 0.5rem)!important;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    
-}
 .item {
     max-height: 65vh;
     padding: 1.25rem;
@@ -159,8 +118,6 @@ h1 {
     display: flex;
     width: 100%;
     gap: 1rem;
-    margin-top: calc(1rem + 48px);
-    margin-bottom: 1rem;
 }
 .hero__card {
     width: min-content;
@@ -172,13 +129,7 @@ h1 {
     border-radius: 1rem;
     position: relative;
 }
-@media (max-width: 768px) {
-    .hero__text {
-   
-    font-size: 2.5rem !important;
-   
-}
-}
+
 .hero__text {
     font-family: "Nunito";
     font-size: 3rem;
@@ -208,11 +159,9 @@ h1 {
     align-items: center;
 
 }
-.hero__text__item:first-child {
-    justify-content: end;
-}
-.hero__text__item:last-child {
-    justify-content: end;
+
+.hero__text__item {
+    justify-content: center;
 
 }
 
@@ -488,26 +437,107 @@ right:-0.25rem;
     display: flex;
     flex-direction: column;
 }
-</style>
-<script setup>
+
+.pagination__container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 1rem;
+}
+.pagination {
+    position: relative;
+    height: 32px !important;
+    display: flex;
+}
+.pagination button:disabled {
+    cursor: not-allowed;
+}
+.pagination button:disabled *{
+    stroke: rgb(178, 178, 178);
+}
+.pagination button {
+    background-color: white;
+    padding: 0.5rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    top:0;
+    height: 32px !important;
+    position: relative;
+    color: var(--primary);
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+.pagination button::after  {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    content: " ";
+    background-color: #4251802F;
+    transition: all 0.5s ease;
+
+}
+.pagination button.current {
+    background-color: var(--primary);
+    color: white;
+}
+.pagination button:hover::after {
+    height: 100%;
+}
+</style><script setup>
 import HeaderComponent from '@/components/HeaderComponent.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
-import CMS from '@/lib/cms';
-import {ref} from "vue"
+import { ref, computed, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 
-const posts = ref([])
+const posts = ref([]);
+const postsPerPage = 8;
+
+const route = useRoute();
+const router = useRouter();
+
+// Set currentPage from URL, fallback to 1
+const currentPage = ref(parseInt(route.query.page) || 1);
+
+// Watch for route changes (e.g., browser navigation)
+watch(
+  () => route.query.page,
+  (newPage) => {
+    const parsed = parseInt(newPage);
+    if (!isNaN(parsed)) currentPage.value = parsed;
+  }
+);
+
+// Load data
 fetch("/api/cms/posts")
   .then(res => {
     if (!res.ok) throw new Error("Failed to load CMS settings");
-    return res.json(); // Return the Promise here
+    return res.json();
   })
   .then(data => {
-    console.log("CMS posts:", data); // Now log the parsed JSON
-    posts.value = data
-
+    posts.value = data;
   })
   .catch(err => {
     console.error("Error loading CMS posts:", err);
   });
 
+// Pagination logic
+const totalPages = computed(() => Math.ceil(posts.value.length / postsPerPage));
+const paginatedPosts = computed(() => {
+  const start = (currentPage.value - 1) * postsPerPage;
+  return posts.value.slice(start, start + postsPerPage);
+});
+
+// Change page + update URL
+function goToPage(page) {
+  if (page >= 1 && page <= totalPages.value) {
+    currentPage.value = page;
+    router.replace({ query: { ...route.query, page: page.toString() } });
+    scrollToTop();
+  }
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 </script>

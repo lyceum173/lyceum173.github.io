@@ -1,15 +1,11 @@
 <template>
-  <header class="header">
-    <div class="header__container">
-      <h1><mark>Link</mark> Lyceum173</h1>
-    </div>
-  </header>
+  <HeaderComponent></HeaderComponent>
   <main class="main">
     <div class="main__container">
       <div id="error" >
         <div class="error-wrap">
           <h2>4<mark>0</mark>4</h2>
-          <p>Посилання не знайдено</p>
+          <p>Сторінку не знайдено</p>
         </div>
       </div>
     </div>
@@ -17,6 +13,7 @@
   <FooterComponent></FooterComponent>
 </template>
 <script setup>
+import HeaderComponent from '@/components/HeaderComponent.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
 </script>
 

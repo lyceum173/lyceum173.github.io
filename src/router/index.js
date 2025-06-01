@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import NewsView from '../views/NewsView.vue'
 import NotFound from '../views/NotFound.vue'
+import NewsPageView from '../views/NewsPageView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,10 +13,21 @@ const router = createRouter({
       component: HomeView,
     },
     {
+      path: '/news/',
+      name: 'news',
+      component: NewsView,
+    },
+     {
+      path: '/news/:id/',
+      name: 'news-view',
+      component: NewsPageView,
+    },
+    {
       path:  '/:pathMatch(.*)*',
       name: '404',
       component: NotFound,
     },
+    
     {
       path: '/:pathMatch(.*\\.json)',
       name: 'BlockJSON',

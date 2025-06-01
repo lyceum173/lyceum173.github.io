@@ -2,9 +2,9 @@
     <header class="header">
         <div class="header__container">
             <h1> Lyceum173 <mark>Web App</mark></h1>
-            <button>
+            <!-- <button>
                 Увійти
-            </button>
+            </button> -->
         </div>
     </header>
     <main class="main">
@@ -49,15 +49,17 @@
                 </div>
                 <div class="news">
                     <div v-for="n in posts" :key="n.id" class="news-item">
-                            <h3>{{ n.title }}</h3>
-                            <p>{{ n.description }}</p>
-                            <p class="news-item__date">{{ n.date }}</p>
+                        <div class="news-item__content">
+                          
+                            <div class="news-item__title">  <h3>{{ n.title }}</h3></div>
+                            <div class="news-item__description"><p>{{ n.description }}</p></div>
+                            <div class="news-item__date"><p>{{ n.date }}</p></div>
                             <button class="news-item__button"><a :href="`/posts/${n.id}`">Перейти
                             </a></button>
                         <div class="news-item__button-after"></div>
                         <div class="news-item__corner"></div>
                         <div class="news-item__corner"></div>
-                            
+                        </div> 
                     </div>
 
                 </div>
@@ -221,6 +223,19 @@ h1 {
     font-size: 2rem;
    align-self: center;
 }
+@media screen and (max-width: 777px) {
+    .hero {
+        flex-direction: column;
+    }
+
+    .hero__card {
+        max-width: 480px;
+        width: 100%;
+    }
+}
+.hero__text__item {
+    flex-wrap: nowrap;
+}
 .hero__text__item:first-child {
     text-align: end;
 }
@@ -320,40 +335,82 @@ section .hr span {
     padding-right: 0.5rem;
 }
 .news {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.5rem;
 }
+
 .news-item {
     background-color: white;
     border-radius: 1rem;
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
     /* box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); */
 }
-
+.news-item__date p {
+    height: min-content;
+}
 .news-item__date {
+    display: flex;
     width:100%;
+    align-items: end;
+    height: 24px !important;
     color: grey;
+    bottom: 1rem;
+    left: 1rem;
+    margin-top: 0.5rem;
 }
 
+.news-item h3 {
+    margin-bottom: 0.5rem;
+}
+.news-item__title {
+    display: flex;
+    flex: 1 1;
 
-
+    line-clamp: 1;    display: -webkit-box;
+    padding-bottom: 0.125rem;
+    line-height: 1 !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    max-height: 1.2rem;
+}
+.news-item__description {
+    display: flex;
+    flex: 1 1;
+    max-width: calc(100% - 1rem);
+    line-clamp: 2;    display: -webkit-box;
+    padding-bottom: 0.125rem;
+    line-height: 1 !important;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    max-height: 2.75rem;
+}
 .news-item{
     padding: 1rem;
     width: 100%;
     border-radius: 1rem;
     position: relative;
 }
+.news-item {
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
 
+}
 .news-item_button {
     width: 5rem;
     height: 2rem;
 }
 .news-item__button-after {
     position: absolute;
-    width:5.5rem;
+    width: 4.75rem;
     height: 2.5rem;
-    background-color: var(--bg-body);
+    background-color: var(--accent);
     border-radius: 1.5rem 0 1rem 0 ;
     bottom: 0;
     right: 0;
@@ -365,15 +422,15 @@ section .hr span {
     position: absolute;
     width: 2rem;
     height: 2rem;
-    background-color: var(--bg-body);
+    background-color: var(--accent);
     bottom: 0;
-    right: 5.5rem;
+    right: 4.75rem;
 }
 .news-item__corner:last-of-type {
     position: absolute;
     width: 2rem;
     height: 2rem;
-    background-color: var(--bg-body);
+    background-color: var(--accent);
     bottom: 2.5rem;
     right: 0rem;
 }
@@ -404,11 +461,18 @@ section .hr span {
     bottom: 0;
     right: 0;
     padding: 0.5rem;
+    padding-bottom: 0.75rem;
     background-color: var(--accent);
     color: white;
     border-radius: 1rem;
     z-index: 60 !important;
 
+}
+
+.news-item__content {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
 }
 </style>
 <script setup>

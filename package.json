@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "appwrite": "^17.0.2",
+    "appwrite": "^18.1.1",
     "motion": "^12.15.0",
     "motion-plus": "^0.1.9",
     "motion-v": "^1.1.1",

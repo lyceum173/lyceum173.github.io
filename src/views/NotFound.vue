@@ -6,7 +6,7 @@
   </header>
   <main class="main">
     <div class="main__container">
-      <div id="error" class="hidden">
+      <div id="error" >
         <div class="error-wrap">
           <h2>4<mark>0</mark>4</h2>
           <p>Посилання не знайдено</p>
@@ -14,55 +14,10 @@
       </div>
     </div>
   </main>
-  <footer class="footer">
-    <div class="footer__container">
-      &copy; <span id="currentYear">{{ year }}</span>
-      <a href="https://lyceum173.kyiv.ua">Ліцей №173</a>&nbsp;
-      <span>|</span>&nbsp; <a href="">Прийма Олександр</a>
-    </div>
-  </footer>
+  <FooterComponent></FooterComponent>
 </template>
 <script setup>
-import { onMounted } from "vue";
-import { databases, ID, clicksDatabases } from "@/lib/appwrite";
-
-const DATABASE_ID = "680f9ad5000421c4f4df";
-const LINKS_COLLECTION_ID = "680f9adf001bf125b188";
-
-onMounted(async () => {
-  const shortId = window.location.pathname.split("/")[1];
-console.log(shortId)
-  try {
-    const linkDoc = await databases.getDocument(
-      DATABASE_ID,
-      LINKS_COLLECTION_ID,
-      shortId
-    );
-
-    if (linkDoc) {
-      const ipResponse = await fetch("https://ident.me/json");
-      const ipData = await ipResponse.json();
-      const userIp = ipData.ip;
-      console.log(ipData.tz);
-      const clickData = {
-        l: shortId,
-        i: userIp,
-        tz: ipData.tz,
-      };
-
-      await clicksDatabases.createDocument(
-        "680fb7d5002bd4fdbfe4",
-        "680fb7e1000966f2f791",
-        ID.unique(),
-        clickData
-      );
-      window.location.href = linkDoc.to;
-    }
-  } catch (error) {
-    console.error("Error:", error);
-    document.getElementById("error").classList.remove("hidden");
-  }
-});
+import FooterComponent from '@/components/FooterComponent.vue';
 </script>
 
 <style scoped>

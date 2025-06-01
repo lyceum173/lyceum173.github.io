@@ -1,22 +1,13 @@
-import { Client, Databases, ID } from 'appwrite';
+import { Client, Databases, Account, ID } from "appwrite";
+const client = new Client()
+  .setEndpoint('https://fra.cloud.appwrite.io/v1')
+  .setProject('683c81b60027617ce9c2').setDevKey("")
 
-// Default Client (for the original project)
-const client = new Client();
-client
-    .setEndpoint('https://fra.cloud.appwrite.io/v1') // Your Appwrite endpoint
-    .setProject('680f7897001b68a25d54'); // Your original project ID
-
-// Database instance for the original project
+const account = new Account(client);
 const databases = new Databases(client);
 
-// New Client (for the clicks project)
-const clicksClient = new Client();
-clicksClient
-    .setEndpoint('https://fra.cloud.appwrite.io/v1') // Your Appwrite endpoint
-    .setProject('680fb6db0003b7ec596e'); // Replace with your new project's ID for clicks
+export { client, account, databases, ID };
 
-// Database instance for the clicks project
-const clicksDatabases = new Databases(clicksClient);
 
-// Export both database instances
-export { client, databases, ID, clicksClient, clicksDatabases };
+const DATABASE_ID = "683c81c300019b08ad2a";
+const COLLECTION_ID = "cms"; 

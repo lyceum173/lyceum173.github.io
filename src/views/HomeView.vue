@@ -301,38 +301,29 @@ section .hr span {
 }
 
 </style>
+<script setup>
+import FooterComponent from '@/components/FooterComponent.vue';
+import CMS from '@/lib/cms';
 
-<script setup lang="ts">
-import { animate, stagger } from "motion"
-import { splitText } from "motion-plus"
-import FooterComponent from "@/components/FooterComponent.vue"
-import "@/assets/css/components/anchor.css"
-import { ref, onMounted } from "vue"
+CMS.list()
+  .then(res => {
+    console.log("CMS Settings:", res.documents);
+  })
+  .catch(err => {
+    console.error("Error fetching CMS data:", err);
+  });
 
-const containerRef = ref<HTMLDivElement | null>(null)
+fetch("https://lyceum173.web.app/cms.json")
+  .then(res => {
+    if (!res.ok) throw new Error("Failed to load CMS settings");
+    console.log(res.json())
+    // return res.json();
+  })
+//   .then(data => {
+//     console.log("CMS settings:", data);
+//   })
+//   .catch(err => {
+//     console.error("Error loading CMS config:", err);
+//   });
 
-onMounted(() => {
-    document.fonts.ready.then(() => {
-        if (!containerRef.value) return
-
-        // Hide the container until the fonts are loaded
-        containerRef.value.style.visibility = "visible"
-
-        const { words } = splitText(
-            containerRef.value.querySelector("h1")!
-        )
-
-        // Animate the words in the h1
-        animate(
-            words,
-            { opacity: [0, 1], y: [10, 0] },
-            {
-                type: "spring",
-                duration: 2,
-                bounce: 0,
-                delay: stagger(0.05),
-            }
-        )
-    })
-})
 </script>

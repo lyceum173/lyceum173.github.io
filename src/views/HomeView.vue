@@ -305,15 +305,7 @@ section .hr span {
 import FooterComponent from '@/components/FooterComponent.vue';
 import CMS from '@/lib/cms';
 
-CMS.list()
-  .then(res => {
-    console.log("CMS Settings:", res.documents);
-  })
-  .catch(err => {
-    console.error("Error fetching CMS data:", err);
-  });
-
-fetch("https://lyceum173.web.app/cms.json")
+fetch("/cms.json")
   .then(res => {
     if (!res.ok) throw new Error("Failed to load CMS settings");
     console.log(res.json())

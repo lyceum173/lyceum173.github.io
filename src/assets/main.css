@@ -30,7 +30,7 @@
   --text-over-accent: #fcfcfc;
   --text-hover-over-dark: #e9db89;
 }
-root {
+/* root {
   --primary: #343f64;
   --accent: #bc448b;
   --hover: #e9db89;
@@ -46,7 +46,7 @@ root {
   --text-over-dark: #fcfcfc;
   --text-over-accent: #fcfcfc;
   --text-hover-over-dark: #e9db89;
-}
+} */
 .wrapper {
   min-height: 100%;
   display: flex;

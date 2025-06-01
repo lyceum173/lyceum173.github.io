@@ -27,11 +27,6 @@
                 <div class="hero__card">
                     Інтерактивна освітня платформа для учнів, вчителів та батьків. <br><br>
                     Навчайся зручно, ефективно та цікаво.
-
-<button class="hero__card__button">Почати</button>
-<div class="hero__card__button-after"></div>
-<div class="hero__card__corner"></div>
-<div class="hero__card__corner"></div>
                 </div>
             </div>
             <br><br>
@@ -137,7 +132,7 @@ h1 {
 }
 .hero__card {
     width: min-content;
-    background: var(--bg-primary);
+    background: linear-gradient(45deg,  #425080FF, var(--accent));
     color: white;
     padding: 1rem;
     max-width: 15rem;
@@ -146,71 +141,6 @@ h1 {
     position: relative;
 }
 
-.hero__card__button {
-    width: 5rem;
-    height: 2rem;
-}
-.hero__card__button-after {
-    position: absolute;
-    width:5.5rem;
-    height: 2.5rem;
-    background-color: var(--bg-body);
-    border-radius: 1.5rem 0 1rem 0 ;
-    bottom: 0;
-    right: 0;
-    content: " ";
-    z-index: 5;
-}
-
-.hero__card__corner {
-    position: absolute;
-    width: 2rem;
-    height: 2rem;
-    background-color: var(--bg-body);
-    bottom: 0;
-    right: 5.5rem;
-}
-.hero__card__corner:last-of-type {
-    position: absolute;
-    width: 2rem;
-    height: 2rem;
-    background-color: var(--bg-body);
-    bottom: 2.5rem;
-    right: 0rem;
-}
-.hero__card__corner:last-of-type::after {
-    position: absolute;
-    content: " ";
-    width: 2rem;
-    height: 2rem;
-    background: var(--bg-primary);
-    bottom: 0;
-    z-index: 1000;
-    right: 0;
-    border-radius: 0 0 1rem 0;
-}
-.hero__card__corner::after {
-    position: absolute;
-    content: " ";
-    width: 2rem;
-    height: 2rem;
-    background: var(--bg-primary);
-    bottom: 0;
-    z-index: 1000;
-    right: 0;
-    border-radius: 0 0 1rem 0;
-}
-.hero__card__button {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    padding: 0.5rem;
-    background-color: black;
-    color: white;
-    border-radius: 1rem;
-    z-index: 60 !important;
-
-}
 .hero__text {
     font-family: "Nunito";
     font-size: 3rem;
@@ -235,12 +165,17 @@ h1 {
 }
 .hero__text__item {
     flex-wrap: nowrap;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+
 }
 .hero__text__item:first-child {
-    text-align: end;
+    justify-content: end;
 }
 .hero__text__item:last-child {
-    text-align: end;
+    justify-content: end;
+
 }
 
 .hero__text mark {
@@ -248,6 +183,9 @@ h1 {
     padding-left: 1rem;
     padding-right: 1rem;
     border-radius: 9999px;
+     flex: 0 1;
+     padding-top: 0.5rem;
+     padding-bottom: 0.5rem;
 }
 section, p {
     text-align: start;
@@ -405,6 +343,9 @@ section .hr span {
 .news-item_button {
     width: 5rem;
     height: 2rem;
+}
+.news-item__button:hover + .news-item__corner, .news-item_button-after:hover + .news-item__corner {
+    border-radius: 0px;
 }
 .news-item__button-after {
     position: absolute;

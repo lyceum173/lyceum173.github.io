@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "dashboard-lyceum173"
-  }
+  },
+  "targets": {
+    "dashboard-lyceum173": {
+      "hosting": {
+        "lyceum173": [
+          "dashboard-lyceum173"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

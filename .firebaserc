@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "auth-lyceum173"
-  }
+  },
+  "targets": {
+    "auth-lyceum173": {
+      "hosting": {
+        "lyceum173": [
+          "lyceum173"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

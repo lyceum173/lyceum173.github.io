@@ -6,17 +6,17 @@
             </div> -->
             <div class="main__container">
                 <div class="breadcrumbs">
-        <a href="/">
+        <router-link to="/">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" class="injected-svg" data-src="https://cdn.hugeicons.com/icons/home-05-stroke-standard.svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" color="#000000">
 <path d="M2 10.5L10.7506 3.49951C11.481 2.91516 12.519 2.91516 13.2494 3.49951L22 10.5" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
 <path d="M4 9V19.5C4 20.6046 4.89543 21.5 6 21.5H18C19.1046 21.5 20 20.6046 20 19.5V9" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
 <path d="M12 17.5V18.5" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg>
-        </a>
+        </router-link>
          / 
-         <a href="/news/">
+         <router-link to="/news/">
             Новини
-        </a> 
+        </router-link> 
         / 
     </div>
 

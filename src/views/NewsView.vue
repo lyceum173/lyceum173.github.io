@@ -24,9 +24,9 @@
                           
                             <div class="news-item__title">  <h3>{{ n.title }}</h3></div>
                             <div class="news-item__description"><p>{{ n.description }}</p></div>
-                            <div class="news-item__date"><p>{{ n.date }}</p></div>
-                            <button class="news-item__button"><a :href="`/news/${n.id}`" news-item__button>Перейти
-                            </a></button>
+                            <div class="news-item__date"><p>{{ n.date.split(" ")[1] }}</p></div>
+                            <button class="news-item__button"><router-link :to="`/news/${n.id}`" news-item__button>Перейти
+                            </router-link></button>
    
                         <div class="news-item__corner"></div>
                         <div class="news-item__corner"></div>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="pagination__container">
                     <div class="pagination">
-<button @click="goToPage(currentPage - 1)" :disabled="currentPage === 1" style="padding: 0px; "><svg style="rotate: 180deg; transform: translateY(-5px);" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="injected-svg" data-src="https://cdn.hugeicons.com/icons/arrow-right-01-stroke-standard.svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" color="#000000">
+<button @click="goToPage(currentPage - 1)" :disabled="currentPage === 1" style="padding: 0px; "  class="pagination__item"><svg style="rotate: 180deg; transform: translateY(-5px);" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="injected-svg" data-src="https://cdn.hugeicons.com/icons/arrow-right-01-stroke-standard.svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" color="#000000">
 <path d="M9.00005 6L15 12L9 18" stroke="#000000" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg></button>
   <button
@@ -44,11 +44,12 @@
     :key="page"
     @click="goToPage(page)"
     :class="{ current: page === currentPage }"
+    class="pagination__item"
   >
     {{ page }}
   </button>
   
-  <button @click="goToPage(currentPage + 1)" :disabled="currentPage === totalPages" style="padding: 0px; "><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="injected-svg" data-src="https://cdn.hugeicons.com/icons/arrow-right-01-stroke-standard.svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" color="#000000">
+  <button @click="goToPage(currentPage + 1)" :disabled="currentPage === totalPages" style="padding: 0px; "  class="pagination__item"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="injected-svg" data-src="https://cdn.hugeicons.com/icons/arrow-right-01-stroke-standard.svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" color="#000000">
 <path d="M9.00005 6L15 12L9 18" stroke="#000000" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg></button>
 </div>
@@ -449,6 +450,20 @@ right:-0.25rem;
     height: 32px !important;
     display: flex;
 }
+.pagination button:first-child{
+    border-radius: 0.5rem 0 0 0.5rem !important;
+    padding-left: 4px !important;
+}
+.pagination button:first-child::after{
+    border-radius: 0.5rem 0 0 0.5rem !important;
+}
+.pagination button:last-child{
+    border-radius: 0 0.5rem 0.5rem 0 !important;
+    padding-right: 4px !important;
+}
+.pagination button:last-child::after{
+    border-radius: 0 0.5rem  0.5rem 0 !important;
+}
 .pagination button:disabled {
     cursor: not-allowed;
 }
@@ -491,7 +506,7 @@ import { ref, computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 const posts = ref([]);
-const postsPerPage = 8;
+const postsPerPage = 12;
 
 const route = useRoute();
 const router = useRouter();

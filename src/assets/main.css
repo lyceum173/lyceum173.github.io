@@ -1,5 +1,6 @@
 @import url(./css/components/footer.css);
 @import url(./css/components/anchor.css);
+@import url(./css/components/button.css);
 @supports (overflow:clip) {
   .wrapper {
     overflow: clip;
@@ -98,6 +99,25 @@ header {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
  
+}
+
+@media (max-width: 640px) {
+    header {
+      font-size: 0.75rem !important;
+    }
+    .main{
+      margin-top: 2.5rem !important;
+    }
+    .hero {
+      margin-top: 0.25rem !important;
+    }
+
+    .hero__text__item  {
+      font-size: 2rem !important;
+    }
+    .hero__text__item mark  {
+      font-size: 1.5rem !important;
+    }
 }
 header, footer {
   background: var(--bg-light);

@@ -20,15 +20,33 @@
                 <div class="hero__card">
                     Інтерактивна освітня платформа для учнів, вчителів та батьків. <br><br>
                     Навчайся зручно, ефективно та цікаво.
+                    <button>
+                        Увійти
+                    </button>
                 </div>
             </div>
             <br><br>
             <br>
-            <section>
+            <section class="about">
                 <div class="hr">
                     <span>ПРО ПЛАТФОРМУ</span>
                 </div>
-                <p>Мета - розбавити</p>
+                <strong>🎯 Система балів і досягнень</strong> <p>— отримуй бали за активність, участь у заходах, навчання та ініціативність. Змагайся з друзями або класами!</p>
+<strong>📊 Голосування та опитування</strong>
+<p> — впливай на події у ліцеї: обирай теми заходів, учасників конкурсів або фільм для перегляду на перерві.
+</p>
+<strong>🗳️ Соціальні ініціативи</strong>
+<p> — пропонуй ідеї, створюй опитування, обговорюй важливі шкільні теми.</p>
+<strong>🧠 Ігрові завдання та челенджі</strong>
+<p> —  пройди квест або вікторину та виграй приємні бонуси.</p>
+<strong>🗓️ Календар подій</strong>
+<p> — слідкуй за шкільними святами, флешмобами, олімпіадами та тематичними днями</p>
+            </section>
+            <br>
+            <section>
+                <div class="hr">
+                    <span>ПОДІЇ</span>
+                </div>
             </section>
             <br>
             <section>
@@ -42,8 +60,8 @@
                             <div class="news-item__title">  <h3>{{ n.title }}</h3></div>
                             <div class="news-item__description"><p>{{ n.description }}</p></div>
                             <div class="news-item__date"><p>{{ n.date }}</p></div>
-                            <button class="news-item__button"><a :href="`/news/${n.id}`" news-item__button>Перейти
-                            </a></button>
+                            <button class="news-item__button"><router-link :to="`/news/${n.id}`" news-item__button>Перейти
+                            </router-link></button>
    
                         <div class="news-item__corner"></div>
                         <div class="news-item__corner"></div>
@@ -52,7 +70,7 @@
 
                 </div>
                 <div class="more">
-                    <a href="news/">Більше</a>
+                    <router-link to="news/">Більше</router-link>
                 </div>
             </section>
             <!-- <section>
@@ -158,7 +176,7 @@ h1 {
 .hero {
     display: flex;
     width: 100%;
-    gap: 1rem;
+    gap: 2rem;
     margin-top: calc(1rem + 48px);
     margin-bottom: 1rem;
 }
@@ -172,6 +190,7 @@ h1 {
     border-radius: 1rem;
     position: relative;
 }
+
 @media (max-width: 768px) {
     .hero__text {
    
@@ -195,7 +214,9 @@ h1 {
     .hero {
         flex-direction: column;
     }
-
+    .hero__card {
+        margin-top: 1rem;
+    }
     .hero__card {
         max-width: 480px;
         width: 100%;
@@ -245,6 +266,10 @@ section .hr::after {
     background-color: grey;
     content: " ";
     z-index: -1 !important;
+}
+
+.about p {
+    margin-bottom: 0.5rem;
 }
 hr {
     position: relative;

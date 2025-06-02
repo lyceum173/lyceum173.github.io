@@ -32,8 +32,8 @@
                     {{ publishedOn }}
                 </div>
                 <section>
-                    <div class="news-content">
-                        {{ newsContent }}
+                    <div class="news-content" v-html="newsContent">
+                        
                     </div>
                     <!-- <div class="news">
                         <div v-for="n in posts" :key="n.id" class="news-item">
@@ -221,6 +221,13 @@
        /* & * {
             animation: main 5s forwards;
         } */
+    }
+
+    .hero__text__item {
+        font-family: "MTA";
+        font-size: 2rem !important;
+        font-weight: bold;
+        color: var(--primary)
     }
     @keyframes main-h1 {
         0%{

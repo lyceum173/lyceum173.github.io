@@ -158,7 +158,7 @@ h1 {
     height: calc(100% + 0.25rem) !important;
     width: calc(100% + 0.5rem)!important;
     padding: 0.5rem;
-    border-radius: 0.5rem;
+    /* border-radius: 0.5rem; */
     
 }
 .item {

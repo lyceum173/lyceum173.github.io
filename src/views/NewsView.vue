@@ -227,6 +227,12 @@ animation-delay: 1s;
         animation: main 5s forwards;
     } */
 }
+.hero__text__item {
+        font-family: "MTA";
+
+        font-weight: bold;
+        color: var(--primary)
+    }
 @keyframes main-h1 {
     0%{
         color: transparent;
@@ -456,6 +462,15 @@ right:-0.25rem;
 }
 .pagination button:first-child::after{
     border-radius: 0.5rem 0 0 0.5rem !important;
+    right: 0 !important;
+    left: unset;
+    width: 0%;
+    height: 100%;
+}
+
+.pagination button:first-child:hover::after{
+    border-radius: 0.5rem 0 0 0.5rem !important;
+    width: 100%;
 }
 .pagination button:last-child{
     border-radius: 0 0.5rem 0.5rem 0 !important;
@@ -463,9 +478,20 @@ right:-0.25rem;
 }
 .pagination button:last-child::after{
     border-radius: 0 0.5rem  0.5rem 0 !important;
+    right: unset !important;
+    left: 0;
+    width: 0%;
+    height: 100%;
+}
+
+.pagination button:last-child:hover::after{
+    width: 100%;
 }
 .pagination button:disabled {
     cursor: not-allowed;
+}
+.pagination button:disabled::after {
+    background-color: rgba(8, 8, 8, 0.139);
 }
 .pagination button:disabled *{
     stroke: rgb(178, 178, 178);

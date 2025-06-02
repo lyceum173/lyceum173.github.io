@@ -1,6 +1,7 @@
 @import url(./css/components/footer.css);
 @import url(./css/components/anchor.css);
 @import url(./css/components/button.css);
+@import url(./css/components/input.css);
 @supports (overflow:clip) {
   .wrapper {
     overflow: clip;
@@ -60,6 +61,9 @@ main {
 }
 main {
   flex: 1 1 ;
+}
+*:focus {
+  outline: none !important;
 }
 * {
   padding: 0;

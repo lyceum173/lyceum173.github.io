@@ -1,7 +1,7 @@
 <template>
         <header class="header">
         <div class="header__container">
-            <router-link to="/"><h1> Lyceum173 <mark>Web App</mark></h1></router-link>
+            <router-link to="/manager/"><h1> Lyceum173 <mark>Web App</mark></h1></router-link>
             <!-- <button>
                 Увійти
             </button> -->
@@ -21,13 +21,14 @@ header {
 }
 header, footer {
     font-family: "MTA";
-    color: var(--primary);
+    color: white;
 
-  background: var(--bg-light);
+  background: linear-gradient(90deg, var(--primary), var(--accent));
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.042), 0 1px 2px -1px rgb(0 0 0 / 0.1);
 }
 .header__container {
   width: 100%;
+  max-width: 100dvw;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

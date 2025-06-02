@@ -8,6 +8,7 @@ button:not(.pagination__item) {
     /* border: dashed transparent 2px; */
     transition: all 0.5s;
     position: relative;
+    cursor: pointer;
     /* position: absolute;
     bottom: -0.5rem;
     right: -0.5rem; */

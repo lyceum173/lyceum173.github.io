@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "appwrite": "^18.1.1",
+    "froala-editor": "^4.5.2",
     "motion": "^12.15.0",
     "motion-plus": "^0.1.9",
     "motion-v": "^1.1.1",

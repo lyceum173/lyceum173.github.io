@@ -69,7 +69,7 @@
                     </div>
 
                 </div>
-                <div class="more">
+                <div class="more" v-if="posts.length > 8">
                     <router-link to="news/">Більше</router-link>
                 </div>
             </section>
@@ -521,7 +521,7 @@ import CMS from '@/lib/cms';
 import {ref} from "vue"
 
 const posts = ref([])
-fetch("/api/cms/posts")
+fetch("https://lyceum173.web.app/api/cms/posts")
   .then(res => {
     if (!res.ok) throw new Error("Failed to load CMS settings");
     return res.json(); // Return the Promise here

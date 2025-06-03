@@ -34,7 +34,7 @@
                     </div>
 
                 </div>
-                <div class="pagination__container">
+                <div v-if="posts.length > 8" class="pagination__container">
                     <div class="pagination">
 <button @click="goToPage(currentPage - 1)" :disabled="currentPage === 1" style="padding: 0px; "  class="pagination__item"><svg style="rotate: 180deg; transform: translateY(-5px);" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="injected-svg" data-src="https://cdn.hugeicons.com/icons/arrow-right-01-stroke-standard.svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" color="#000000">
 <path d="M9.00005 6L15 12L9 18" stroke="#000000" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -550,7 +550,7 @@ watch(
 );
 
 // Load data
-fetch("/api/cms/posts")
+fetch("https://lyceum173.web.app/api/cms/posts")
   .then(res => {
     if (!res.ok) throw new Error("Failed to load CMS settings");
     return res.json();
@@ -559,7 +559,7 @@ fetch("/api/cms/posts")
     posts.value = data;
   })
   .catch(err => {
-    console.error("Error loading CMS posts:", err);
+    console.error("Error loading CMS posts:", err.message);
   });
 
 // Pagination logic

@@ -5,6 +5,7 @@ import NotFound from '../views/NotFound.vue'
 import NewsPageView from '../views/NewsPageView.vue'
 import AuthView from '@/views/manager/AuthView.vue'
 import PostsView from '@/views/manager/PostsView.vue'
+import PostView from '@/views/manager/PostView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -34,6 +35,11 @@ const router = createRouter({
       component: PostsView,
     },
     {
+      path: '/manager/posts/:id/edit',
+      name: 'manager-post-edit',
+      component: PostView,
+    },
+    {
       path:  '/:pathMatch(.*)*',
       name: '404',
       component: NotFound,
@@ -58,7 +64,7 @@ router.beforeEach((to, from, next) => {
   })
   .then(data => {
     data.map(i => i = i.id)
-    console.log( data.map(i => i = i.id));
+    console.log( data);
   })
   .catch(error => {
     console.error("Fetch error:", error);

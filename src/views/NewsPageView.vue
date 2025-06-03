@@ -456,7 +456,7 @@
 const nID = window.location.pathname.split("/")[2]
     const newsContent = ref("")
     const publishedOn = ref("")
-    fetch("/api/cms/posts")
+    fetch("https://lyceum173.web.app/api/cms/posts")
       .then(res => {
         if (!res.ok) throw new Error("Failed to load CMS settings");
         return res.json(); // Return the Promise here

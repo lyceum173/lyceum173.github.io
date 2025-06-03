@@ -29,7 +29,14 @@
                     <tbody>
                         <tr v-for="(post, p) in posts">
                             <td>{{ p+1 }}</td>
-                            <td><div>{{ post.title }}</div><div><button>View</button><button>View</button><button>View</button></div></td>
+                            <td>
+                                <div>{{ post.title }}</div>
+                                <div>
+                                    <button @click="goToEdit(post.id)">Edit</button>
+                                    <button>View</button>
+                                    <button>View</button>
+                                </div>
+                            </td>
                             <td>{{ post.description }}</td>
                             <td>{{  post .date }}</td>
                             <td>{{  post .id }}</td>
@@ -41,28 +48,37 @@
         </div></main>
 </template>
 <script setup>
-// import "@/assets/css/views/cms.css"
+import { useRouter } from 'vue-router';
+import { ref } from 'vue';
 import HeaderComponent from '@/components/HeaderComponent.vue';
 import TechHeader from '@/components/TechHeader.vue';
-import { ref } from 'vue';
-const authed = ref(false)
-const posts = ref([])
+
+const router = useRouter();
+const authed = ref(false);
+const posts = ref([]);
+
+const goToEdit = (id) => {
+  router.push(`/manager/posts/${id}/edit`);
+};
+
 setTimeout(() => {
-    authed.value = true
-}, 1000)
+  authed.value = true;
+}, 1000);
+
 fetch("https://lyceum173.web.app/api/cms/posts")
   .then(res => {
     if (!res.ok) throw new Error("Network response was not ok");
-    return res.json(); // Правильний метод
+    return res.json();
   })
   .then(data => {
-    console.log( data, "origin");
-    posts.value = data
+    console.log(data, "origin");
+    posts.value = data;
   })
   .catch(error => {
     console.error("Fetch error:", error);
   });
 </script>
+
 <style scoped>
 
 .main {

@@ -28,11 +28,16 @@
         </div></main>
 </template>
 
-<script setup>
+<script setup type="module">
 // import "@/assets/css/views/cms.css"
 import HeaderComponent from '@/components/HeaderComponent.vue';
 import TechHeader from '@/components/TechHeader.vue';
 import { ref, onMounted, nextTick } from 'vue';
+// At the top of your <script setup>
+import FroalaEditor from 'froala-editor'
+import 'froala-editor/js/plugins.pkgd.min.js'
+import 'froala-editor/css/froala_editor.pkgd.min.css'
+
 const authed = ref(false)
 const posts = ref([])
 const froalaInstance = ref(null)
@@ -57,7 +62,7 @@ function saveHtml() {
 
 onMounted(async () => {
   await nextTick();
-  if (window.FroalaEditor) {
+  if (FroalaEditor) {
     // Отримуємо попередньо збережений вміст
     const savedContent = localStorage.getItem('froala-content') || '';
 

@@ -1,73 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Lyceum173 API - Posts</title>
-  <style>
-    body {
-      margin: 0;
-      background-color: #000;
-      color: #fff;
-      font-family: monospace;
-      padding: 1rem;
-    }
-    pre {
-      white-space: pre-wrap;
-      word-break: break-word;
-      font-size: 0.95rem;
-      line-height: 1.4;
-    }
-  </style>
-</head>
-<body>
-  <pre id="json-output">Loading...</pre>
-
-  <script>
-    const posts = [
-      {
-        id: "test-new",
-        published: false,
-        title: "Test New",
-        description: "Офіційно стартувала літня екзаменаційна сесія для студентів усіх курсів.",
-        date: "10:00 01.06.25",
-        content: "<p>Усі студенти повинні дотримуватись розкладу і мати при собі студентський квиток...</p>"
-      },
-      {
-        id: "event-summer",
-        published: true,
-        title: "Літній захід",
-        description: "Незабаром відбудеться традиційний літній пікнік для учнів та викладачів.",
-        date: "15:00 10.06.25",
-        content: "<p>Цьогорічний літній пікнік відбудеться на шкільному подвір'ї...</p>"
-      },
-      {
-        id: "exam-tips",
-        published: true,
-        title: "Поради до іспитів",
-        description: "Корисні поради щодо підготовки до іспитів та ефективного повторення матеріалу.",
-        date: "09:30 03.06.25",
-        content: "<p>Ось кілька порад, які допоможуть краще підготуватися до іспитів...</p>"
-      },
-      {
-        id: "grad-announcement",
-        published: true,
-        title: "Випускний вечір",
-        description: "Випускний відбудеться у великій актовій залі о 18:00.",
-        date: "18:00 20.06.25",
-        content: "<p>Дорогі випускники! Чекаємо вас на святковому вечорі...</p>"
-      },
-      {
-        id: "new-library",
-        published: true,
-        title: "Нова бібліотека",
-        description: "У школі відкрито нову сучасну бібліотеку з електронним архівом.",
-        date: "11:00 05.06.25",
-        content: "<p>Нова бібліотека обладнана сучасними комп’ютерами...</p>"
-      }
-    ];
-
-    // Output formatted JSON
-    document.getElementById('json-output').textContent = JSON.stringify(posts, null, 2);
-  </script>
-</body>
-</html>
+[
+  {
+    "id": "test-new",
+    "published": false,
+    "title": "Test New",
+    "description": "Офіційно стартувала літня екзаменаційна сесія...",
+    "date": "10:00 01.06.25",
+    "content": "<p>Усі студенти повинні дотримуватись...</p>"
+  },
+  {
+    "id": "event-summer",
+    "published": true,
+    "title": "Літній захід",
+    "description": "Незабаром відбудеться традиційний пікнік...",
+    "date": "15:00 10.06.25",
+    "content": "<p>Цьогорічний пікнік відбудеться на подвір'ї...</p>"
+  }
+]
